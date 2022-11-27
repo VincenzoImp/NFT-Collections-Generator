@@ -1,1 +1,1 @@
-# NFT-collections-generator
+# NFT-Collections-Generator
