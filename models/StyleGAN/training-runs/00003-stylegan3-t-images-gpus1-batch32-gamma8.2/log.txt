@@ -1,0 +1,58 @@
+Loading training set...
+
+Num images:  40000
+Image shape: [3, 128, 128]
+Label shape: [0]
+
+Constructing networks...
+Setting up PyTorch plugin "bias_act_plugin"... Failed!
+Traceback (most recent call last):
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/train.py", line 286, in <module>
+    main() # pylint: disable=no-value-for-parameter
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/click/core.py", line 1128, in __call__
+    return self.main(*args, **kwargs)
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/click/core.py", line 1053, in main
+    rv = self.invoke(ctx)
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/click/core.py", line 1395, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/click/core.py", line 754, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/train.py", line 281, in main
+    launch_training(c=c, desc=desc, outdir=opts.outdir, dry_run=opts.dry_run)
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/train.py", line 96, in launch_training
+    subprocess_fn(rank=0, c=c, temp_dir=temp_dir)
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/train.py", line 47, in subprocess_fn
+    training_loop.training_loop(rank=rank, **c)
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/training/training_loop.py", line 168, in training_loop
+    img = misc.print_module_summary(G, [z, c])
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/torch_utils/misc.py", line 216, in print_module_summary
+    outputs = module(*inputs)
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1071, in _call_impl
+    result = forward_call(*input, **kwargs)
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/training/networks_stylegan3.py", line 511, in forward
+    ws = self.mapping(z, c, truncation_psi=truncation_psi, truncation_cutoff=truncation_cutoff, update_emas=update_emas)
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1071, in _call_impl
+    result = forward_call(*input, **kwargs)
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/training/networks_stylegan3.py", line 151, in forward
+    x = getattr(self, f'fc{idx}')(x)
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1071, in _call_impl
+    result = forward_call(*input, **kwargs)
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/training/networks_stylegan3.py", line 100, in forward
+    x = bias_act.bias_act(x, b, act=self.activation)
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/torch_utils/ops/bias_act.py", line 84, in bias_act
+    if impl == 'cuda' and x.device.type == 'cuda' and _init():
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/torch_utils/ops/bias_act.py", line 41, in _init
+    _plugin = custom_ops.get_plugin(
+  File "/home/vincenzo/Documents/GitHub/NFT-Collections-Generator/models/StyleGAN/stylegan3/torch_utils/custom_ops.py", line 136, in get_plugin
+    torch.utils.cpp_extension.load(name=module_name, build_directory=cached_build_dir,
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/torch/utils/cpp_extension.py", line 1080, in load
+    return _jit_compile(
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/torch/utils/cpp_extension.py", line 1293, in _jit_compile
+    _write_ninja_file_and_build_library(
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/torch/utils/cpp_extension.py", line 1382, in _write_ninja_file_and_build_library
+    extra_ldflags = _prepare_ldflags(
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/torch/utils/cpp_extension.py", line 1490, in _prepare_ldflags
+    extra_ldflags.append(f'-L{_join_cuda_home("lib64")}')
+  File "/home/vincenzo/anaconda3/envs/stylegan3/lib/python3.9/site-packages/torch/utils/cpp_extension.py", line 1984, in _join_cuda_home
+    raise EnvironmentError('CUDA_HOME environment variable is not set. '
+OSError: CUDA_HOME environment variable is not set. Please set it to your CUDA install root.
